@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/im_splash_bg"
     android:orientation="vertical"
-    tools:context=".presentation.fragment.SplashFragment">
+    tools:context=".presentation.ui.splash.SplashFragment">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"

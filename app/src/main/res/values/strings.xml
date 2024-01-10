@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">food_recept</string>
+    <string name="app_name">TastyCraft</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_100k_premium_recipe">100K+ Premium Recipe</string>
@@ -25,4 +25,19 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_a_member">Already a member?</string>
+    <string name="home">Home</string>
+    <string name="saved">Saved</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+    <string name="hello_">Hello</string>
+    <string name="bro">Bro</string>
+    <string name="what_are_you_cooking_today">What are you cooking today?</string>
+    <string name="search_recipe">Search recipe</string>
+    <string name="daily_meal">Daily Meal</string>
+    <string name="category">category:</string>
+    <string name="country">country:</string>
+    <string name="search_recipes">Search recipes</string>
+    <string name="recent_search">Recent Search</string>
+    <string name="search_result">Search Result</string>
+    <string name="not_found">Not Found</string>
 </resources>
