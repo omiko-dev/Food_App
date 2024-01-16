@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="20dp"
     android:orientation="vertical"
-    tools:context=".presentation.ui.search.SearchFragment">
+    tools:context=".presentation.screen.search.SearchFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

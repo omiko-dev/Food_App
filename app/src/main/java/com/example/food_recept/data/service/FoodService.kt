@@ -1,7 +1,7 @@
 package com.example.food_recept.data.service
 
-import com.example.food_recept.data.dto.FoodByCategoryListDto
-import com.example.food_recept.data.dto.FoodModelResponseDto
+import com.example.food_recept.data.model.food_by_category.FoodByCategoryListDto
+import com.example.food_recept.data.model.food.FoodModelResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

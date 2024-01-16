@@ -1,6 +1,6 @@
 package com.example.food_recept.data.mapper.food
 
-import com.example.food_recept.data.dto.FoodDto
+import com.example.food_recept.data.model.food.FoodDto
 import com.example.food_recept.domain.model.FoodModel
 
 fun FoodDto.toDomain(): FoodModel{

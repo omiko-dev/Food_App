@@ -40,4 +40,11 @@
     <string name="recent_search">Recent Search</string>
     <string name="search_result">Search Result</string>
     <string name="not_found">Not Found</string>
+    <string name="filter_search">Filter Search</string>
+    <string name="filter">Filter</string>
+    <string name="instruction">Instruction</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="see_in_youtube">See In Youtube</string>
+    <string name="go_to_source">Go To Source</string>
+    <string name="tastycraft">TastyCraft</string>
 </resources>

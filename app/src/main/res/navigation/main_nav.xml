@@ -6,26 +6,29 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.example.food_recept.presentation.ui.home.HomeFragment"
+        android:name="com.example.food_recept.presentation.screen.home.HomeFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_home_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_home_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/saved"
-        android:name="com.example.food_recept.presentation.ui.saved.SavedFragment"
+        android:name="com.example.food_recept.presentation.screen.saved.SavedFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_saved" />
     <fragment
         android:id="@+id/notification"
-        android:name="com.example.food_recept.presentation.ui.notification.NotificationFragment"
+        android:name="com.example.food_recept.presentation.screen.notification.NotificationFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.food_recept.presentation.ui.profile.ProfileFragment"
+        android:name="com.example.food_recept.presentation.screen.profile.ProfileFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_profile" />
     <action
@@ -42,12 +45,24 @@
         app:destination="@id/notification" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.food_recept.presentation.ui.search.SearchFragment"
+        android:name="com.example.food_recept.presentation.screen.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <argument
             android:name="search"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_searchFragment_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.example.food_recept.presentation.screen.food_detail.FoodDetailFragment"
+        android:label="fragment_food_detail"
+        tools:layout="@layout/fragment_food_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

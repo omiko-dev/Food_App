@@ -2,7 +2,7 @@ package com.example.food_recept.domain.use_case
 
 import com.example.food_recept.data.common.Resource
 import com.example.food_recept.data.common.resourceMapper
-import com.example.food_recept.domain.mapper.toPresenter
+import com.example.food_recept.presentation.mapper.toPresenter
 import com.example.food_recept.domain.repository.FoodRepository
 import com.example.food_recept.presentation.model.Food
 import kotlinx.coroutines.flow.Flow

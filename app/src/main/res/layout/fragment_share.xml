@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="bottom"
-    tools:context=".presentation.ui.share.ShareFragment">
+    tools:context=".presentation.screen.share.ShareFragment">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"

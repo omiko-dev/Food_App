@@ -2,6 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Food_recept" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="itemFillColor">@color/white</item>
+        <item name="color">@color/white</item>
+        <item name="background">@color/black</item>
     </style>
 </resources>

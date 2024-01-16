@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/start_nav"
-    app:startDestination="@id/shareFragment">
+    app:startDestination="@id/splashFragment">
 
     <include app:graph="@navigation/main_nav" />
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.food_recept.presentation.ui.splash.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        android:id="@+id/startFragment"
+        android:name="com.example.food_recept.presentation.screen.start.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.food_recept.presentation.ui.login.LoginFragment"
+        android:name="com.example.food_recept.presentation.screen.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -31,17 +31,29 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.food_recept.presentation.ui.register.RegisterFragment"
+        android:name="com.example.food_recept.presentation.screen.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/shareFragment"
-        android:name="com.example.food_recept.presentation.ui.share.ShareFragment"
+        android:name="com.example.food_recept.presentation.screen.share.ShareFragment"
         android:label="fragment_share"
         tools:layout="@layout/fragment_share" >
         <action
             android:id="@+id/action_shareFragment_to_navigation2"
             app:destination="@id/navigation2" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.food_recept.presentation.screen.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_shareFragment"
+            app:destination="@id/shareFragment" />
     </fragment>
 
 </navigation>
