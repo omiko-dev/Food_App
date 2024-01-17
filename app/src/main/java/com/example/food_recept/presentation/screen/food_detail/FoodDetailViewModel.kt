@@ -2,8 +2,8 @@ package com.example.food_recept.presentation.screen.food_detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food_recept.data.common.Resource
-import com.example.food_recept.domain.use_case.FoodDetailByIdUseCase
+import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.domain.use_case.remote.food.FoodDetailByIdUseCase
 import com.example.food_recept.presentation.model.Food
 import com.example.food_recept.presentation.screen.food_detail.event.FoodDetailEvent
 import dagger.hilt.android.lifecycle.HiltViewModel

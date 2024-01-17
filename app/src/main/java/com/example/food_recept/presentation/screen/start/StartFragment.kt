@@ -1,6 +1,7 @@
 package com.example.food_recept.presentation.screen.start
 
-import com.example.food_recept.BaseFragment
+import androidx.navigation.fragment.findNavController
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.databinding.FragmentStartBinding
 
 
@@ -8,6 +9,9 @@ class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::i
 
 
     override fun listener() {
+        binding.btnStart.setOnClickListener {
+            findNavController().navigate(StartFragmentDirections.actionSplashFragmentToLoginFragment())
+        }
     }
 
 

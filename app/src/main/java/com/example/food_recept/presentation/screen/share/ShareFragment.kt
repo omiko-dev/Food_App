@@ -1,7 +1,7 @@
 package com.example.food_recept.presentation.screen.share
 
 import androidx.navigation.findNavController
-import com.example.food_recept.BaseFragment
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.R
 import com.example.food_recept.databinding.FragmentShareBinding
 import com.example.food_recept.presentation.screen.home.HomeFragmentDirections

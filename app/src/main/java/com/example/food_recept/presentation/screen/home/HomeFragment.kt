@@ -8,8 +8,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.food_recept.BaseFragment
-import com.example.food_recept.data.common.Resource
+import com.example.food_recept.presentation.base.BaseFragment
+import com.example.food_recept.data.remote.common.Resource
 import com.example.food_recept.databinding.FragmentHomeBinding
 import com.example.food_recept.presentation.screen.adapter.CategoryRecyclerAdapter
 import com.example.food_recept.presentation.screen.adapter.FoodByCategoryRecyclerAdapter

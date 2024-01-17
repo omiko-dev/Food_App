@@ -8,8 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.food_recept.presentation.screen.dialog.ActionDialogFragment
-import com.example.food_recept.BaseFragment
-import com.example.food_recept.data.common.Resource
+import com.example.food_recept.presentation.base.BaseFragment
+import com.example.food_recept.data.remote.common.Resource
 import com.example.food_recept.databinding.FragmentFoodDetailBinding
 import com.example.food_recept.presentation.screen.adapter.FoodDetailRecyclerAdapter
 import com.example.food_recept.presentation.screen.food_detail.event.FoodDetailEvent

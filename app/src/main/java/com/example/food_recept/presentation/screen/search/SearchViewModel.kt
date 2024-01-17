@@ -3,11 +3,11 @@ package com.example.food_recept.presentation.screen.search
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food_recept.data.common.Resource
-import com.example.food_recept.data.common.resourceMapper
-import com.example.food_recept.domain.use_case.CategoryUseCase
+import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.data.remote.common.resourceMapper
+import com.example.food_recept.domain.use_case.remote.catogory.CategoryUseCase
 import com.example.food_recept.domain.use_case.CountryUseCase
-import com.example.food_recept.domain.use_case.FoodByNameUseCase
+import com.example.food_recept.domain.use_case.remote.food.FoodByNameUseCase
 import com.example.food_recept.presentation.model.Category
 import com.example.food_recept.presentation.model.Country
 import com.example.food_recept.presentation.model.Food

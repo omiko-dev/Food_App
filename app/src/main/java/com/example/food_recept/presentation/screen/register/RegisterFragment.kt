@@ -1,7 +1,7 @@
 package com.example.food_recept.presentation.screen.register
 
 import androidx.navigation.fragment.findNavController
-import com.example.food_recept.BaseFragment
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.databinding.FragmentRegisterBinding
 
 

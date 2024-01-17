@@ -2,10 +2,10 @@ package com.example.food_recept.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food_recept.data.common.Resource
-import com.example.food_recept.domain.use_case.CategoryUseCase
-import com.example.food_recept.domain.use_case.FoodByCategoryUseCase
-import com.example.food_recept.domain.use_case.SingleRandomFoodUseCase
+import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.domain.use_case.remote.catogory.CategoryUseCase
+import com.example.food_recept.domain.use_case.remote.food.FoodByCategoryUseCase
+import com.example.food_recept.domain.use_case.remote.food.SingleRandomFoodUseCase
 import com.example.food_recept.presentation.model.Category
 import com.example.food_recept.presentation.model.Food
 import com.example.food_recept.presentation.model.FoodByCategory

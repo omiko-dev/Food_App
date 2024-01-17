@@ -87,7 +87,7 @@
                 tools:ignore="TextContrastCheck" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnStart"
+                android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -98,7 +98,7 @@
                 android:drawablePadding="-30dp"
                 android:fontFamily="@font/font_poppins_regular"
                 android:paddingEnd="10dp"
-                android:text="@string/sign_in"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

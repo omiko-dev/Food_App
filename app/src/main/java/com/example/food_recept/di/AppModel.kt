@@ -1,16 +1,19 @@
 package com.example.food_recept.di
 
 import com.example.food_recept.BuildConfig
-import com.example.food_recept.data.service.AuthService
-import com.example.food_recept.data.service.CategoryService
-import com.example.food_recept.data.service.CountryService
-import com.example.food_recept.data.service.FoodService
+import com.example.food_recept.data.remote.common.HandleResource
+import com.example.food_recept.data.remote.service.AuthService
+import com.example.food_recept.data.remote.service.CategoryService
+import com.example.food_recept.data.remote.service.CountryService
+import com.example.food_recept.data.remote.service.FoodService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Qualifier
@@ -30,11 +33,25 @@ annotation class UserRetrofitClient
 object AppModel {
 
     @Provides
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return interceptor
+    }
+
+    @Provides
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
+    @Provides
     @Singleton
     @FoodRetrofitClient
-    fun provideFoodRetrofitClient(): Retrofit =
+    fun provideFoodRetrofitClient(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
         .baseUrl(BuildConfig.FOOD_BASE_URL)
+        .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create(
             Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         )).build()
@@ -42,9 +59,10 @@ object AppModel {
     @Provides
     @Singleton
     @UserRetrofitClient
-    fun provideUserRetrofitClient(): Retrofit =
+    fun provideUserRetrofitClient(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.USER_BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(
                 Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
             )).build()
@@ -63,7 +81,6 @@ object AppModel {
     @Singleton
     fun provideCountryService(@FoodRetrofitClient retrofit: Retrofit): CountryService =
         retrofit.create(CountryService::class.java)
-
 
     @Provides
     @Singleton

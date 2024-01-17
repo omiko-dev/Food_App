@@ -10,8 +10,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.food_recept.BaseFragment
-import com.example.food_recept.data.common.Resource
+import com.example.food_recept.presentation.base.BaseFragment
+import com.example.food_recept.data.remote.common.Resource
 import com.example.food_recept.databinding.FragmentSearchBinding
 import com.example.food_recept.presentation.model.Category
 import com.example.food_recept.presentation.model.Country

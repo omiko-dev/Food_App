@@ -130,7 +130,7 @@
                 app:buttonTint="@color/orange" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnStart"
+                android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

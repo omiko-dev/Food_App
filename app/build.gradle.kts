@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -23,7 +24,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "FOOD_BASE_URL", "\"https://www.themealdb.com/api/json/v1/1/\"")
-            buildConfigField("String", "USER_BASE_URL", "\"https://localhost:7277/api/\"")
+            buildConfigField("String", "USER_BASE_URL", "\"http://10.0.2.2:5055/api/\"")
         }
         release {
             isMinifyEnabled = false
@@ -32,7 +33,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "FOOD_BASE_URL", "\"https://www.themealdb.com/api/json/v1/1/\"")
-            buildConfigField("String", "USER_BASE_URL", "\"https://localhost:7277/api/\"")
+            buildConfigField("String", "USER_BASE_URL", "\"http://10.0.2.2:5055/api/\"")
         }
     }
     compileOptions {
@@ -68,6 +69,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
+    // okHttp3
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
     // moshi
     implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
 
@@ -78,8 +82,14 @@ dependencies {
     // glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // flexbox
-    implementation("com.google.android.flexbox:flexbox:3.0.0")
+    // datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // room database
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 }
 
 kapt {
