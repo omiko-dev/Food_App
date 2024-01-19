@@ -1,6 +1,9 @@
 package com.example.food_recept.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.food_recept.BuildConfig
+import com.example.food_recept.data.local.database.AppDatabase
 import com.example.food_recept.data.remote.common.HandleResource
 import com.example.food_recept.data.remote.service.AuthService
 import com.example.food_recept.data.remote.service.CategoryService
@@ -11,6 +14,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,6 +35,17 @@ annotation class UserRetrofitClient
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModel {
+
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase{
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "data_base"
+        ).addMigrations(AppDatabase.migration3To4).build()
+    }
 
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {

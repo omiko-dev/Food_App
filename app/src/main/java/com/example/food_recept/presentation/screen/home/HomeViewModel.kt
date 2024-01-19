@@ -2,6 +2,7 @@ package com.example.food_recept.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.food_recept.data.local.repository.UserDatabaseRepositoryImpl
 import com.example.food_recept.data.remote.common.Resource
 import com.example.food_recept.domain.use_case.remote.catogory.CategoryUseCase
 import com.example.food_recept.domain.use_case.remote.food.FoodByCategoryUseCase
@@ -20,9 +21,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val foodByCategoryUseCase: FoodByCategoryUseCase,
     private val categoryUseCase: CategoryUseCase,
-    private val singleRandomFoodUseCase: SingleRandomFoodUseCase
+    private val singleRandomFoodUseCase: SingleRandomFoodUseCase,
+    private val userDatabaseRepositoryImpl: UserDatabaseRepositoryImpl
 ): ViewModel() {
-
 
     private var _singleRandomStateFlow = MutableStateFlow<Resource<Food>>(Resource.Idle)
     val singleRandomStateFlow get() = _singleRandomStateFlow.asStateFlow()

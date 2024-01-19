@@ -3,10 +3,12 @@ package com.example.food_recept.presentation.screen.food_detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.domain.use_case.local.database.InsertUserUseCase
 import com.example.food_recept.domain.use_case.remote.food.FoodDetailByIdUseCase
 import com.example.food_recept.presentation.model.Food
 import com.example.food_recept.presentation.screen.food_detail.event.FoodDetailEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FoodDetailViewModel @Inject constructor(
-    private val getFoodDetailByIdUseCase: FoodDetailByIdUseCase
+    private val getFoodDetailByIdUseCase: FoodDetailByIdUseCase,
+    private val insertUserUseCase: InsertUserUseCase
 ): ViewModel() {
 
     private var _foodDetailStateFlow = MutableStateFlow<Resource<Food>>(Resource.Idle)
@@ -24,6 +27,12 @@ class FoodDetailViewModel @Inject constructor(
     fun onEvent(event: FoodDetailEvent){
         when(event) {
             is FoodDetailEvent.GetFoodById -> getFoodById(event.id)
+        }
+    }
+
+    fun insertUser(){
+        viewModelScope.launch(Dispatchers.IO) {
+            insertUserUseCase()
         }
     }
 

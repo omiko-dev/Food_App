@@ -81,6 +81,7 @@ class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodD
     private fun showSourceDialogListener(){
         adapter.sourceOnClick = {
             dialog.show(parentFragmentManager, tag)
+            viewModel.insertUser()
         }
     }
 
