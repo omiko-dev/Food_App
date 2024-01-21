@@ -1,4 +1,4 @@
-# Foodie Mobile App
+# Food Mobile App -> "TastyCraft"
 
 Foodie is a mobile app developed in Kotlin that allows users to explore various food recipes. Users can view recipes, add them to favorites, watch cooking videos on YouTube, and access detailed information about each recipe.
 
@@ -53,7 +53,7 @@ Foodie is a mobile app developed in Kotlin that allows users to explore various 
   - implementation("com.google.firebase:firebase-firestore:24.10.1")
 
 ## Installation
-1. Clone the repository: git clone https://github.com/your-username/foodie-app.git
+1. Clone the repository: git clone https://github.com/omiko-dev/Food_App.git
 2. Open the project in Android Studio
 3. Build and run the app on an emulator or physical device
 
