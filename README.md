@@ -19,38 +19,38 @@ Foodie is a mobile app developed in Kotlin that allows users to explore various 
 
 ## Dependencies
 - **Navigation:** 
-  implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-  implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+  - implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+  - implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
 
 - **Retrofit:** 
-  implementation("com.squareup.retrofit2:retrofit:2.9.0")
-  implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+  - implementation("com.squareup.retrofit2:retrofit:2.9.0")
+  - implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
 - **OkHttp3:** 
-  implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+  - implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
 - **Moshi:** 
-  implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
+  - implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
 
 - **Dagger Hilt:** 
-  implementation("com.google.dagger:hilt-android:2.50")
-  kapt("com.google.dagger:hilt-compiler:2.50")
+  - implementation("com.google.dagger:hilt-android:2.50")
+  - kapt("com.google.dagger:hilt-compiler:2.50")
 
 - **Glide:** 
-  implementation("com.github.bumptech.glide:glide:4.16.0")
+  - implementation("com.github.bumptech.glide:glide:4.16.0")
 
 - **Room Database:** 
-  implementation("androidx.room:room-runtime:2.6.1")
-  annotationProcessor("androidx.room:room-compiler:2.6.1")
-  implementation("androidx.room:room-ktx:2.6.1")
-  ksp("androidx.room:room-compiler:2.6.1")
+  - implementation("androidx.room:room-runtime:2.6.1")
+  - annotationProcessor("androidx.room:room-compiler:2.6.1")
+  - implementation("androidx.room:room-ktx:2.6.1")
+  - ksp("androidx.room:room-compiler:2.6.1")
 
 - **Firebase:** 
-  implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-  implementation("com.google.firebase:firebase-analytics")
-  implementation("com.google.firebase:firebase-core:21.1.1")
-  implementation("com.google.firebase:firebase-auth:22.3.1")
-  implementation("com.google.firebase:firebase-firestore:24.10.1")
+  - implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+  - implementation("com.google.firebase:firebase-analytics")
+  - implementation("com.google.firebase:firebase-core:21.1.1")
+  - implementation("com.google.firebase:firebase-auth:22.3.1")
+  - implementation("com.google.firebase:firebase-firestore:24.10.1")
 
 ## Installation
 1. Clone the repository: git clone https://github.com/your-username/foodie-app.git
