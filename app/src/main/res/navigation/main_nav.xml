@@ -20,29 +20,17 @@
         android:id="@+id/saved"
         android:name="com.example.food_recept.presentation.screen.saved.SavedFragment"
         android:label="fragment_notification"
-        tools:layout="@layout/fragment_saved" />
-    <fragment
-        android:id="@+id/notification"
-        android:name="com.example.food_recept.presentation.screen.notification.NotificationFragment"
-        android:label="fragment_saved"
-        tools:layout="@layout/fragment_notification" />
-    <fragment
-        android:id="@+id/profile"
-        android:name="com.example.food_recept.presentation.screen.profile.ProfileFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_saved_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_home"
         app:destination="@id/home" />
     <action
         android:id="@+id/action_global_saved"
         app:destination="@id/saved" />
-    <action
-        android:id="@+id/action_global_profile"
-        app:destination="@id/profile" />
-    <action
-        android:id="@+id/action_global_notification"
-        app:destination="@id/notification" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.food_recept.presentation.screen.search.SearchFragment"
@@ -62,7 +50,12 @@
         android:label="fragment_food_detail"
         tools:layout="@layout/fragment_food_detail" >
         <argument
+            android:name="food"
+            app:argType="com.example.food_recept.presentation.model.Food"
+            app:nullable="true" />
+        <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

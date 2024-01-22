@@ -30,16 +30,11 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etSearch"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_weight="1"
+            android:layout_marginTop="50dp"
             android:background="@drawable/shape_gray_border"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
@@ -48,15 +43,6 @@
             android:paddingStart="10dp"
             android:textColorHint="@color/gray"
             tools:ignore="RtlSymmetry" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibSearchClick"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/shape_green_bg"
-            android:src="@drawable/ic_setting" />
-    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"

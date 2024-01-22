@@ -10,6 +10,7 @@
     tools:context=".presentation.screen.dialog.ActionDialogFragment"
     tools:ignore="RtlSymmetry">
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bGoogle"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:paddingStart="10dp"
@@ -22,6 +23,7 @@
         tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bYoutube"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:textColor="?attr/color"

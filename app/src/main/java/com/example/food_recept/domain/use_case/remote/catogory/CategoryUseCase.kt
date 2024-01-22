@@ -1,8 +1,8 @@
 package com.example.food_recept.domain.use_case.remote.catogory
 
-import com.example.food_recept.data.remote.common.resourceMapper
-import com.example.food_recept.presentation.mapper.toPresenter
+import com.example.food_recept.data.common.resourceMapper
 import com.example.food_recept.domain.repository.remote.CategoryRepository
+import com.example.food_recept.presentation.mapper.toPresenter
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

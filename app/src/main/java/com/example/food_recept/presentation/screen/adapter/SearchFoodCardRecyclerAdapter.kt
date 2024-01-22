@@ -26,7 +26,7 @@ class SearchFoodCardRecyclerAdapter :
         }
     }
 
-    lateinit var onClick: (String) -> Unit
+    lateinit var onClick: (Food) -> Unit
 
     inner class SearchFoodCardViewHolder(private val binding: SearchFoodCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -44,7 +44,7 @@ class SearchFoodCardRecyclerAdapter :
 
         fun listener(){
             binding.root.setOnClickListener {
-                onClick(currentList[layoutPosition].idMeal)
+                onClick(currentList[layoutPosition])
             }
         }
     }

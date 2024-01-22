@@ -7,16 +7,18 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.food_recept.presentation.screen.dialog.ActionDialogFragment
-import com.example.food_recept.presentation.base.BaseFragment
-import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.data.common.Resource
 import com.example.food_recept.databinding.FragmentFoodDetailBinding
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.presentation.screen.adapter.FoodDetailRecyclerAdapter
+import com.example.food_recept.presentation.screen.dialog.ActionDialogFragment
 import com.example.food_recept.presentation.screen.food_detail.event.FoodDetailEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
-class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodDetailBinding::inflate) {
+class FoodDetailFragment :
+    BaseFragment<FragmentFoodDetailBinding>(FragmentFoodDetailBinding::inflate) {
 
     private val args: FoodDetailFragmentArgs by navArgs()
     private val viewModel: FoodDetailViewModel by viewModels()
@@ -26,6 +28,7 @@ class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodD
     override fun listener() {
         goToHomeListener()
         showSourceDialogListener()
+        setFavoriteListener()
     }
 
     override fun observe() {
@@ -41,9 +44,16 @@ class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodD
     }
 
     private fun getFoodByDetailEvent(){
-        viewModel.onEvent(FoodDetailEvent.GetFoodById(args.id))
+        if(args.id != null){
+            viewModel.onEvent(FoodDetailEvent.GetFoodById(args.id!!))
+        }else{
+            args.food!!.ingredients =
+                args.food!!.ingredients.filter { ingredient -> ingredient.isNullOrBlank() }
+            args.food!!.measures =
+                args.food!!.measures.filter { measures -> measures.isNullOrBlank() }
+            adapter.setFood(args.food!!)
+        }
     }
-
 
     private fun foodByDetailObserve(){
         viewLifecycleOwner.lifecycleScope.launch {
@@ -51,9 +61,9 @@ class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodD
                 viewModel.foodDetailStateFlow.collect {
                     when(it){
                         is Resource.Success -> {
-                            it.success.ingredients = it.success.ingredients.filter { it != null && it.isNotBlank() }
-                            it.success.measures = it.success.measures.filter { it != null && it.isNotBlank() }
                             adapter.setFood(it.success)
+                            dialog.youtubeLink = it.success.youtube
+                            dialog.googleLink = it.success.source?: ""
                         }
                         is Resource.Error -> {}
                         is Resource.Loader -> {}
@@ -72,17 +82,21 @@ class FoodDetailFragment : BaseFragment<FragmentFoodDetailBinding>(FragmentFoodD
         }
     }
 
-    private fun goToHomeListener(){
+    private fun goToHomeListener() {
         adapter.goBackOnClick = {
             findNavController().popBackStack()
         }
     }
 
-    private fun showSourceDialogListener(){
+    private fun showSourceDialogListener() {
         adapter.sourceOnClick = {
             dialog.show(parentFragmentManager, tag)
-            viewModel.insertUser()
         }
     }
 
+    private fun setFavoriteListener() {
+        adapter.setFavoriteOnClick = {
+            viewModel.onEvent(FoodDetailEvent.AddFavorite(food = it))
+        }
+    }
 }

@@ -2,8 +2,10 @@ package com.example.food_recept.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food_recept.data.local.repository.UserDatabaseRepositoryImpl
-import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.data.common.Resource
+import com.example.food_recept.domain.use_case.local.database.food.DeleteAllFoodDBUseCase
+import com.example.food_recept.domain.use_case.local.database.user.DeleteUserUseCase
+import com.example.food_recept.domain.use_case.remote.auth.LogoutUserCase
 import com.example.food_recept.domain.use_case.remote.catogory.CategoryUseCase
 import com.example.food_recept.domain.use_case.remote.food.FoodByCategoryUseCase
 import com.example.food_recept.domain.use_case.remote.food.SingleRandomFoodUseCase
@@ -12,6 +14,7 @@ import com.example.food_recept.presentation.model.Food
 import com.example.food_recept.presentation.model.FoodByCategory
 import com.example.food_recept.presentation.screen.home.event.HomeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -22,7 +25,9 @@ class HomeViewModel @Inject constructor(
     private val foodByCategoryUseCase: FoodByCategoryUseCase,
     private val categoryUseCase: CategoryUseCase,
     private val singleRandomFoodUseCase: SingleRandomFoodUseCase,
-    private val userDatabaseRepositoryImpl: UserDatabaseRepositoryImpl
+    private val deleteUserUserCase: DeleteUserUseCase,
+    private val deleteAllFoodDBUseCase: DeleteAllFoodDBUseCase,
+    private val logoutUserCase: LogoutUserCase
 ): ViewModel() {
 
     private var _singleRandomStateFlow = MutableStateFlow<Resource<Food>>(Resource.Idle)
@@ -34,11 +39,14 @@ class HomeViewModel @Inject constructor(
     private var _foodByCategoryStateFlow = MutableStateFlow<Resource<List<FoodByCategory>>>(Resource.Idle)
     val foodByCategoryStateFlow get() = _foodByCategoryStateFlow.asStateFlow()
 
+
+
     fun onEvent(event: HomeEvent){
         when(event){
             is HomeEvent.GetCategory -> getCategory()
             is HomeEvent.GetFoodByCategory -> getFoodByCategory(event.category)
             is HomeEvent.GetSingleRandomFood -> getSingleRandomFood()
+            is HomeEvent.LogOut -> logOut()
         }
     }
 
@@ -63,6 +71,14 @@ class HomeViewModel @Inject constructor(
             singleRandomFoodUseCase().collect {
                 _singleRandomStateFlow.value = it
             }
+        }
+    }
+
+    private fun logOut(){
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteUserUserCase()
+            deleteAllFoodDBUseCase()
+            logoutUserCase()
         }
     }
 }

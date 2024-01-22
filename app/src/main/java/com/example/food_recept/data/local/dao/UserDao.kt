@@ -1,18 +1,16 @@
 package com.example.food_recept.data.local.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.food_recept.data.local.entity.User
-import kotlinx.coroutines.flow.Flow
+import com.example.food_recept.data.local.entity.UserEntity
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user WHERE userId LIKE :id")
-    fun getUser(id: Int): Flow<User>
-    @Delete
-    fun delete(user: User)
+    @Query("SELECT * FROM user")
+    fun getUser(): UserEntity
+    @Query("DELETE FROM user")
+    fun delete()
     @Insert
-    fun insertUser(user: User)
+    fun insertUser(userEntity: UserEntity)
 }

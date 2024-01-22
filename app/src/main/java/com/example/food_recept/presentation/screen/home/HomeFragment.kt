@@ -8,10 +8,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.food_recept.data.local.repository.UserDatabaseRepositoryImpl
-import com.example.food_recept.presentation.base.BaseFragment
-import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.data.common.Resource
 import com.example.food_recept.databinding.FragmentHomeBinding
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.presentation.screen.adapter.CategoryRecyclerAdapter
 import com.example.food_recept.presentation.screen.adapter.FoodByCategoryRecyclerAdapter
 import com.example.food_recept.presentation.screen.home.event.HomeEvent
@@ -27,6 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun listener() {
         getFoodByCategoryListener()
         goToSearchListener()
+        logOutListener()
     }
 
     override fun bind() {
@@ -153,11 +153,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun goToFoodDetailListener(id: String){
         foodByCategoryAdapter.onClick = {
-            findNavController().navigate(HomeFragmentDirections.actionHomeToFoodDetailFragment(it))
+            findNavController().navigate(HomeFragmentDirections.actionHomeToFoodDetailFragment(null, it))
         }
 
         binding.vDailyMealView.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeToFoodDetailFragment(id))
+            findNavController().navigate(HomeFragmentDirections.actionHomeToFoodDetailFragment(null, id))
+        }
+    }
+
+    private fun logOutListener(){
+        binding.ivLogOut.setOnClickListener {
+            viewModel.onEvent(HomeEvent.LogOut)
+            findNavController().popBackStack()
         }
     }
 }

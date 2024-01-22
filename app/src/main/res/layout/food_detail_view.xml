@@ -38,6 +38,17 @@
         app:layout_constraintTop_toBottomOf="@+id/ivSource"
         tools:ignore="ImageContrastCheck" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibAddFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_gray_bg"
+        android:padding="10dp"
+        android:src="@drawable/ic_heart_full"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFoodImage"
+        app:layout_constraintEnd_toEndOf="@+id/ivFoodImage" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
@@ -95,77 +106,22 @@
         app:layout_constraintStart_toEndOf="@+id/appCompatTextView7"
         app:layout_constraintTop_toTopOf="@+id/appCompatTextView7" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7">
-
-        <RadioButton
-            android:id="@+id/rbIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_green_bg"
-            android:layoutDirection="ltr"
-            android:button="@null"
-            android:text="@string/ingredient"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:ignore="VisualLintButtonSize" />
-
-        <RadioButton
-            android:id="@+id/rbInstruct"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_green_border"
-            android:layoutDirection="ltr"
-            android:button="@null"
-            android:text="@string/instruction"
-            android:textAlignment="center"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:ignore="VisualLintButtonSize" />
-    </RadioGroup>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInstruct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/shape_gray_two_bg"
+        android:padding="20dp"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:lineHeight="20dp"
         android:textStyle="bold"
-        android:padding="20dp"
-        android:background="@drawable/shape_gray_two_bg"
-        android:layout_marginHorizontal="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7"
+        app:lineHeight="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

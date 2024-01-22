@@ -10,13 +10,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.food_recept.presentation.base.BaseFragment
-import com.example.food_recept.data.remote.common.Resource
+import com.example.food_recept.data.common.Resource
 import com.example.food_recept.databinding.FragmentSearchBinding
-import com.example.food_recept.presentation.model.Category
-import com.example.food_recept.presentation.model.Country
+import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.presentation.screen.adapter.SearchFoodCardRecyclerAdapter
-import com.example.food_recept.presentation.screen.dialog.FoodFilterSheet
 import com.example.food_recept.presentation.screen.search.event.SearchEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,13 +24,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var adapter: SearchFoodCardRecyclerAdapter
     private val args: SearchFragmentArgs by navArgs()
-    private val foodFilterSheet = FoodFilterSheet()
-    private var countryList: List<Country> = listOf()
-    private var categoryList: List<Category> = listOf()
 
     override fun listener() {
-        searchFoodListener()
-        filterListener()
         searchFieldListener()
         goToHomeListener()
         goToFoodAboutListener()
@@ -44,15 +36,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         searchFoodByArgs()
     }
 
-    override fun event() {
-        viewModel.onEvent(SearchEvent.GetCategoryList)
-        viewModel.onEvent(SearchEvent.GetCountryList)
-    }
-
     override fun observe() {
         foodByNameObserve()
-        categoryObserve()
-        countryObserve()
     }
 
     private fun foodByNameObserve(){
@@ -61,12 +46,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 viewModel.foodByNameStateFlow.collect {
                     when(it) {
                         is Resource.Success -> {
-                            val test = it.success
-                            foodFilterSheet.onClick = {
-                                adapter.submitList(
-                                    test.filter { item -> it.country == item.country && it.category == item.category }
-                                )
-                            }
                             adapter.submitList(it.success)
                         }
                         is Resource.Error -> {}
@@ -78,69 +57,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun categoryObserve() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.categoryStateFlow.collect {
-                    when (it) {
-                        is Resource.Success -> {
-                            categoryList = it.success
-                        }
-
-                        is Resource.Error -> {
-
-                        }
-
-                        is Resource.Loader -> {}
-                        is Resource.Idle -> {}
-                    }
-                }
-            }
-        }
-    }
-
-    private fun countryObserve() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.countryStateFlow.collect {
-                    when (it) {
-                        is Resource.Success -> {
-
-                            countryList = it.success
-                        }
-
-                        is Resource.Error -> {
-
-                        }
-
-                        is Resource.Loader -> {
-
-                        }
-
-                        is Resource.Idle -> {
-
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     private fun bindAdapter() {
         adapter = SearchFoodCardRecyclerAdapter()
         with(binding) {
             recycler.adapter = adapter
             recycler.layoutManager = GridLayoutManager(requireContext(), 2)
-        }
-    }
-
-    private fun searchFoodListener() {
-        with(binding) {
-            ibSearchClick.setOnClickListener {
-                foodFilterSheet.show(parentFragmentManager, tag)
-                foodFilterSheet.categoryList = categoryList
-                foodFilterSheet.countryList = countryList
-            }
         }
     }
 
@@ -157,12 +78,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun filterListener() {
-//        foodFilterSheet.onClick = {
-////            viewModel.getFilteredFood(it.category, it.country)
-//        }
-    }
-
     private fun goToHomeListener(){
         binding.ivGoBack.setOnClickListener {
             findNavController().popBackStack()
@@ -171,7 +86,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private fun goToFoodAboutListener(){
         adapter.onClick = {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToFoodDetailFragment(it))
+            findNavController().navigate(
+                SearchFragmentDirections.actionSearchFragmentToFoodDetailFragment(
+                    it,
+                    null
+                )
+            )
         }
     }
 }

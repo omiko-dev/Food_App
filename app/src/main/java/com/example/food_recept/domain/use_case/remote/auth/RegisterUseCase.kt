@@ -8,5 +8,6 @@ import javax.inject.Inject
 class RegisterUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke(register: Register) = authRepository.register(registerModelRequest = register.toDomain())
+    suspend operator fun invoke(register: Register) =
+        authRepository.register(registerModelRequest = register.toDomain())
 }

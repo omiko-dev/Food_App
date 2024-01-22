@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_margin="5dp"
     android:layout_height="wrap_content">
+
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivImage"
@@ -35,17 +38,18 @@
         android:id="@+id/tvCategory"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        android:textColor="@color/gray_two"
         android:layout_marginStart="60dp"
-        android:paddingStart="10dp"
         android:layout_marginBottom="4dp"
         android:background="@color/white"
         android:fontFamily="@font/font_poppins_regular"
+        android:paddingStart="10dp"
         android:text="@string/hello"
+        android:textColor="@color/gray_two"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ivImage"
-        app:layout_constraintStart_toStartOf="@+id/ivImage" />
+        app:layout_constraintStart_toStartOf="@+id/ivImage"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
