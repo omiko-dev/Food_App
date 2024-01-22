@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetUserFoodUseCase @Inject constructor(
     private val userFoodRepository: UserFoodRepository
 ) {
-    suspend operator fun  invoke() = userFoodRepository.getUserFood()
+    suspend operator fun  invoke(uid: String) = userFoodRepository.getUserFood(uid)
 }

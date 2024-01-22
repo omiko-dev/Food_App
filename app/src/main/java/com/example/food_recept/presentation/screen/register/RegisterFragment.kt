@@ -9,6 +9,7 @@ import com.example.food_recept.data.common.Resource
 import com.example.food_recept.databinding.FragmentRegisterBinding
 import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.presentation.model.Register
+import com.example.food_recept.presentation.screen.register.event.RegisterEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,23 +26,25 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         registerObserve()
     }
 
-    private fun goToLogin(){
+    private fun goToLogin() {
         binding.tvSignUp.setOnClickListener {
             findNavController().popBackStack()
         }
     }
 
-    private fun registerObserve(){
+    private fun registerObserve() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.registerStateFlow.collect {
-                    when(it){
+                    when (it) {
                         is Resource.Success -> {
                             findNavController().popBackStack()
                         }
+
                         is Resource.Error -> {
 
                         }
+
                         is Resource.Loader -> {}
                         is Resource.Idle -> {}
                     }
@@ -50,13 +53,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         }
     }
 
-    private fun registerListener(){
+    private fun registerListener() {
         binding.btnLogin.setOnClickListener {
-            viewModel.test(
-                Register(
-                    name = binding.etName.text.toString(),
-                    email = binding.etEmail.text.toString(),
-                    password = binding.etPassword.text.toString()
+            viewModel.onEvent(
+                RegisterEvent.SignUp(
+                    Register(
+                        name = binding.etName.text.toString(),
+                        email = binding.etEmail.text.toString(),
+                        password = binding.etPassword.text.toString()
+                    )
                 )
             )
         }

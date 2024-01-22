@@ -10,6 +10,7 @@ import com.example.food_recept.databinding.FragmentLoginBinding
 import com.example.food_recept.presentation.base.BaseFragment
 import com.example.food_recept.presentation.model.Login
 import com.example.food_recept.presentation.model.User
+import com.example.food_recept.presentation.screen.login.event.LoginEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,36 +28,49 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         loginObserve()
     }
 
-    private fun goToSignUp(){
+    private fun goToSignUp() {
         binding.tvSignUp.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
     }
 
-    private fun loginListener(){
+    private fun loginListener() {
         with(binding) {
-            binding.
-            btnLogin.setOnClickListener {
-                viewModel.login(Login(email = etEmail.text.toString(), password = etPassword.text.toString()))
+            binding.btnLogin.setOnClickListener {
+                viewModel.onEvent(
+                    LoginEvent.LogIn(
+                        (Login(
+                            email = etEmail.text.toString(),
+                            password = etPassword.text.toString()
+                        ))
+                    )
+                )
             }
         }
     }
 
-    private fun loginObserve(){
+    private fun loginObserve() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loginStateFlow.collect {
-                    when(it){
+                    when (it) {
                         is Resource.Success -> {
-                            viewModel.insertUserInDB(
-                                User(
-                                    uid = it.success.uid,
-                                    email = it.success.email ?: ""
+                            binding.tvError.text = ""
+                            viewModel.onEvent(
+                                LoginEvent.InsertUserInDB(
+                                    User(
+                                        uid = it.success.uid,
+                                        email = it.success.email ?: ""
+                                    )
                                 )
                             )
-                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToShareFragment())
+                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToShareFragment())
                         }
-                        is Resource.Error -> {}
+
+                        is Resource.Error -> {
+                            binding.tvError.text = it.error
+                        }
+
                         is Resource.Loader -> {}
                         is Resource.Idle -> {}
                     }

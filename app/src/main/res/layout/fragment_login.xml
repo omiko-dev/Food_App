@@ -73,13 +73,15 @@
                 android:textColorHint="@color/gray"
                 tools:ignore="RtlSymmetry,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
+
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvForgotPass"
+                android:id="@+id/tvError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/forgot_password"
+                android:text=""
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 tools:ignore="TextContrastCheck" />

@@ -16,16 +16,17 @@ class UserFoodRepositoryImpl @Inject constructor(
     private val firebaseResource: FirebaseResource,
     private val firebaseAuth: FirebaseAuth
 ) : UserFoodRepository {
-    override suspend fun getUserFood(): Flow<Resource<List<FoodModel>>> {
+    override suspend fun getUserFood(uid: String): Flow<Resource<Any>> {
         return firebaseResource.handleResource {
-            fireStore.collection("user").document(firebaseAuth.uid!!).get().addOnSuccessListener { document ->
-                if (document.exists()) {
-                    Log.i("omiko", document.data.toString())
-                    document.data
-                } else {
-                    "Not Include"
+            fireStore.collection("users")
+                .document(uid)
+                .collection("foods")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        Log.i("omiko","${document.id} => ${document.data}")
+                    }
                 }
-            }
         }
     }
 

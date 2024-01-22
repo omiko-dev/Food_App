@@ -42,6 +42,7 @@ object AppModel {
             .addInterceptor(loggingInterceptor)
             .build()
     }
+
     @Provides
     @Singleton
     @FoodRetrofitClient
