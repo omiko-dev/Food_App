@@ -57,12 +57,4 @@ Foodie is a mobile app developed in Kotlin that allows users to explore various 
 2. Open the project in Android Studio
 3. Build and run the app on an emulator or physical device
 
-## Usage
-1. Launch the app on your device
-2. Browse through the collection of food recipes
-3. Add your favorite recipes to the favorites list
-4. Watch cooking tutorial videos on YouTube
-5. View detailed information about each recipe
-6. Explore the source of each recipe for more details
-
 
