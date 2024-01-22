@@ -1,4 +1,4 @@
-package com.example.food_recept.data.remote.common
+package com.example.food_recept.data.common
 
 fun <T, R> Resource<T>.resourceMapper(mapper: (T) -> R): Resource<R> {
     return when(this){

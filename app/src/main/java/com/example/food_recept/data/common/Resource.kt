@@ -1,4 +1,4 @@
-package com.example.food_recept.data.remote.common
+package com.example.food_recept.data.common
 
 sealed class Resource<out T> {
     data class Success<out T>(val success: T): Resource<T>()

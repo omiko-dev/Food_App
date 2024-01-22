@@ -1,4 +1,4 @@
-package com.example.food_recept.data.remote.common
+package com.example.food_recept.data.common
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +18,7 @@ class HandleResource {
                     emit(Resource.Error(error = data.errorBody()?.string() ?: ""))
                 }
             }catch (e: Throwable){
-                Log.i("omiko", "${e.message}")
+                emit(Resource.Error(error = e.message ?: ""))
             }finally {
                 emit(Resource.Idle)
             }

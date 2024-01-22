@@ -1,8 +1,8 @@
 package com.example.food_recept.data.remote.repository
 
-import com.example.food_recept.data.remote.common.HandleResource
-import com.example.food_recept.data.remote.common.Resource
-import com.example.food_recept.data.remote.common.resourceMapper
+import com.example.food_recept.data.common.HandleResource
+import com.example.food_recept.data.common.Resource
+import com.example.food_recept.data.common.resourceMapper
 import com.example.food_recept.data.remote.mapper.category.toDomain
 import com.example.food_recept.data.remote.service.CategoryService
 import com.example.food_recept.domain.repository.remote.CategoryRepository
